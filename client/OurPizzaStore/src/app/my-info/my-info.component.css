@@ -1,0 +1,22 @@
+.hd{
+  font-size: 12px;
+  font-family: 'Vollkorn', serif;
+  color: rgb(48, 47, 47);
+}
+
+.hd2{
+  font-size: 12px;
+  font-family: 'Vollkorn', serif;
+  margin-left: 20px;
+  color: rgb(48, 47, 47);
+}
+
+.btn{
+  color: black;
+  font-size: 15px;
+  font-family: 'Vollkorn', serif;
+}
+.btn:hover{
+  color: red;
+
+}

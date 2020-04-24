@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-6">
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputName4">Full Name</label>
+          <input type="text"
+                 class="form-control"
+                 id="inputName4" placeholder="Name"
+                 formControlName="name">
+          <div class="validate" *ngIf="form.get('name').touched && form.get('name').invalid">
+            <small *ngIf="form.get('name').errors.required">fill field</small>
+            <small *ngIf="form.get('name').errors.minlength">too short name</small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Email</label>
+          <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
+                 formControlName="email"
+          >
+          <div class="validate" *ngIf="form.get('email').touched && form.get('email').invalid">
+            <small *ngIf="form.get('email').errors.required">fill field</small>
+            <small *ngIf="form.get('email').errors.minlength">incorrect email</small>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
+               formControlName="address">
+        <div class="validate" *ngIf="form.get('address').touched && form.get('address').invalid">
+          <small *ngIf="form.get('address').errors.required">fill field</small>
+          <small *ngIf="form.get('address').errors.minlength">too short address</small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputPhone4">Phone</label>
+          <input type="number" class="form-control" id="inputPhone4" placeholder="Phone"
+                 formControlName="phone"
+          >
+          <div class="validate" *ngIf="form.get('phone').touched && form.get('phone').invalid">
+            <small *ngIf="form.get('phone').errors.required">fill field</small>
+            <small *ngIf="form.get('phone').errors.minlength">too short</small>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">To order</button>
+    </form>
+
+  </div>
+  <div class="col-6"><h2>Your order:</h2>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Count</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prod of dataProducts; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{prod.name}}</td>
+        <td>{{prod.price}}</td>
+        <td>{{prod.count}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteOneItem(prod.id, prod.price)">x</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      Amount price: {{amountPrice}}
+    </div>
+  </div>
+</div>
+

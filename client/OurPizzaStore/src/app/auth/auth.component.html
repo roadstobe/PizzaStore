@@ -1,0 +1,57 @@
+<!--<section id="section-intro">-->
+<!--  <div class="page-top">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-xs-6">-->
+<!--          <a class="text-uppercase" routerLinkActive="active"-->
+<!--             routerLink="/"-->
+<!--             [routerLinkActiveOptions]="{exact:true}"-->
+<!--          >Pizza Delivery</a>-->
+<!--        </div>-->
+<!--        <div class="col-xs-6 text-right">-->
+<!--          Welcome Guest, <a href="#" class="text-uppercase" routerLinkActive="active"-->
+<!--                            routerLink="/login">Sign in</a> |-->
+<!--          <a href="#" class="text-uppercase" routerLinkActive="active" routerLink="/register">Create new account</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<section id="section-intro">
+ <div class="page-top">
+<div class="container-fluid wrapper-auth">
+  <div class="container container-auth">
+    <div class="auth">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active"
+             routerLinkActive="active"
+             routerLink="/"
+             [routerLinkActiveOptions]="{exact:true}"
+          >Pizza Delivery</a>
+        </li>
+          <li class="nav-item" *ngIf="!navTitleToGet">
+            <a class="nav-link active"
+               routerLinkActive="active"
+               routerLink="/login"
+            >Sign in</a>
+          </li>
+          <li class="nav-item" *ngIf="!navTitleToGet">
+            <a  class="nav-link active"
+               routerLinkActive="active"
+               routerLink="/register"
+            >Sing up</a>
+          </li>
+        <li class="nav-item" *ngIf="navTitleToGet">
+          <a  class="nav-link active"
+              routerLinkActive="active"
+              routerLink="/my-info"
+          >Cabinet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</section>

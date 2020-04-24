@@ -1,0 +1,46 @@
+
+<div id="main-navigation-container">
+  <div id="main-navigation-inner">
+    <div class="container">
+      <div class="relative-container clearfix">
+        <div id="main-navigation-button"><i class="fa fa-reorder"></i></div>
+        <div class="pull-left">
+          <div class="centered-columns">
+            <div class="centered-column">
+              <img class="page-logo" alt="logo" src="assets/images/logo1.png">
+            </div>
+            <div class="centered-column hidden-xs">
+              <h1 class="site-name">PizzaDelivery</h1>
+
+            </div>
+          </div>
+        </div>
+        <nav id="main-navigation" style="font-size: 15px;">
+          <ul id="one-page-nav">
+            <li class="active">
+              <a href="#section-intro">Home</a>
+            </li>
+            <li>
+              <a href="#section-about">About Us</a>
+            </li>
+            <li>
+              <a href="#section-menu">Menu</a>
+            </li>
+            <li>
+              <a href="#section-gallery">Gallery</a>
+            </li>
+            <li>
+              <a href="#section-contact">Contact</a>
+            </li>
+            <li>
+              <div class="menu-item has-small-label cart-trigger">
+                <a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i><sup>{{amountProduct}}</sup></a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="main-navigation-placeholder"></div>

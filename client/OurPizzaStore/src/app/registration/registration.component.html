@@ -1,0 +1,46 @@
+<div class="col s12">
+  <form #myForm="ngForm" class="myForm" novalidate (ngSubmit)="onSubmit(myForm)">
+
+    <span>REGISTER</span>
+    <div class="form-group">
+      <label>Enter your full name</label>
+      <input class="form-control" name="userName" ngModel required pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"  />
+    </div>
+
+    <div class="form-group">
+      <label>Enter your email</label>
+      <input class="form-control" name="email" ngModel
+             required email />
+    </div>
+
+    <div class="form-group">
+      <label>Enter your phone number</label>
+      <input class="form-control" name="phone" ngModel
+             required pattern=  "^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" />
+    </div>
+    <div class="form-group">
+      <label>Enter your address</label>
+      <input class="form-control" name="address" ngModel
+      />
+    </div>
+    <div class="form-group">
+      <label>Enter your date of birth</label>
+      <input class="form-control" type="date" name="dateOfBirth" ngModel
+      />
+    </div>
+    <div class="form-group">
+      <label>Enter your password</label>
+      <input class="form-control" name="password" ngModel
+             required required="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
+    </div>
+
+
+
+    <div class="form-group">
+      <input type="submit" [disabled]="myForm.invalid" class="btn btn-success" value="Register" />
+      <a routerLink="/login" class="btn btn-danger float-right" role="button" aria-pressed="true">Cancle</a>
+
+    </div>
+
+  </form>
+</div>

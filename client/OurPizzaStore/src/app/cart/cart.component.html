@@ -1,0 +1,28 @@
+<div *ngIf="!dataProducts.length; else elseBlock"><h2>Cart is empty</h2></div>
+<ng-template #elseBlock>
+  <h2>Your order:</h2>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Count</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prod of dataProducts; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{prod.name}}</td>
+      <td>{{prod.price}}</td>
+      <td>{{prod.count}}</td>
+      <td><button class="btn btn-danger" (click)="deleteOneItem(prod.id, prod.price)">x</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="text-right">
+    <a routerLink="/order" class="btn btn-outline-dark">Order</a>
+    Amount price: {{amountPrice}}
+  </div>
+</ng-template>

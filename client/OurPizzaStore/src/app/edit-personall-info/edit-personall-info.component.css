@@ -1,0 +1,7 @@
+.form-control.ng-touched.ng-invalid{
+  border: 1px solid red;
+}
+small{
+  font-size: 12px;
+  font-weight: bold;
+}

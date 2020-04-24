@@ -1,0 +1,40 @@
+#center {text-align: center;}
+.form-group {
+  background-color:gray;
+  text-align: center;
+  padding: 50px 0;
+}
+.header{
+  text-decoration-color: black;
+  font-style: oblique;
+  font-size: 190%;
+}
+.telegram {
+  width: 100%;
+  height: 100%;
+  /* position: relative; */
+  /* background: url("./img/icons_telegram.png") no-repeat center center;
+   background-size: auto;
+   background-position: center;*/
+  text-align: center;
+  text-decoration-color: honeydew;
+  margin: 0 10px;
+}
+.instagram {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 0 10px;
+}
+.facebook {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 0 10px;
+}
+.viber {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 0 10px;
+}

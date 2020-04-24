@@ -1,0 +1,19 @@
+<h1>My orders</h1>
+<div class="row">
+  <div class="col " *ngFor="let order of orders">
+    <div class="card oneCol" style="width: 25rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          <span class="nameProp">Date: </span>{{order.date | date: 'yyyy MM dd : hh:ss'}}</h5>
+        <div *ngFor="let item of order.items; let i = index">
+          <p><span class="nameProp">Order item: {{i + 1}}</span></p>
+          <p><span class="nameProp">kind:</span> {{item.kind}}</p>
+          <p><span class="nameProp">Name:</span> {{item.name}} <span>({{item.count}}x)</span></p>
+          <p><span class="nameProp">Price:</span> {{item.value}} by one</p>
+          <hr>
+        </div>
+        <p><span class="nameProp">Amount price:</span> {{order.price}}</p>
+      </div>
+    </div>
+  </div>
+</div>
