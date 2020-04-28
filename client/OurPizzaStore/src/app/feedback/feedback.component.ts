@@ -15,7 +15,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.feedback.getFeedback().subscribe(res=>{
-      this.feedbackArray = res;
+      this.feedbackArray = res
     })
   }
 

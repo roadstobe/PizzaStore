@@ -82,6 +82,8 @@ export class MainMenuComponent implements OnInit, OnDestroy {
       count: 1
     }
 
+    alert(`was added ${productInCartObj.name} by ${productInCartObj.price}`)
+
     //добавлення до корзини
     let arrProducts = [];
     this.getCart = this._dataService.getProductInCart().subscribe(cart => arrProducts = cart)
