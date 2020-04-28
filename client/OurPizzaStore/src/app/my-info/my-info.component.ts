@@ -11,6 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class MyInfoComponent implements OnInit {
 
+  isAdmin:boolean = false;
   user:UserI = {
     address: "", birthday: undefined, email: "", name: "", password: "", phone: ""
 
@@ -21,7 +22,12 @@ export class MyInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser = this._dataService.getUser()
-      .subscribe((user) => this.user = user);
+      .subscribe((user) => {
+        this.user = user;
+        if(this.user.role === 'admin'){
+          this.isAdmin = true;
+        }
+      });
   }
 
 
@@ -49,4 +55,7 @@ export class MyInfoComponent implements OnInit {
 
   }
 
+  goToAdmin() {
+    this.route.navigate(['admin']);
+  }
 }

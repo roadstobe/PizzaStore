@@ -3,6 +3,10 @@ import * as $ from 'jquery';
 import {ProductService , ProductI } from '../services/product.service'
 import { stringify } from 'querystring';
 import { Button } from 'protractor';
+import {UserI} from "../services/user.service";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-administrative',
@@ -11,9 +15,10 @@ import { Button } from 'protractor';
 })
 export class AdministrativeComponent implements OnInit {
   Products:ProductI[]=[];
-  constructor(private productServise :ProductService  ) { }
- 
-  
+  constructor(private productServise :ProductService, private route:Router, private _dataService: DataService  ) { }
+ user:UserI = {address: "", birthday: undefined, email: "", name: "", password: "", phone: ""}
+  private getUser: Subscription;
+
 refresh()
 {
 
@@ -21,11 +26,20 @@ refresh()
     .subscribe((data)=>{
     this.Products = data
     });
-  
-   
+
+
 }
 
   ngOnInit(): void {
+    this.getUser = this._dataService.getUser()
+      .subscribe((user) => {
+        this.user = user;
+        if(this.user.role === 'user'){
+          this.route.navigate(['my-info'])
+        }
+      });
+
+
     $('#content').append("<h1>Hello Admin</h1>");
     this.productServise.getProducts()
     .subscribe((data)=>{
@@ -36,7 +50,7 @@ refresh()
   {
     this.refresh();
     $("#content").empty();
-  
+
     $('#content').append(' <button id = "add" class="btn btn-primary" ng-click = addNew()>Add new product</button>');
 
 
@@ -61,7 +75,7 @@ for(let i=0;i<this.Products.length; i++)
 {
   $('tbody').append("<tr id ="+i+">");
   var Nutrients = new String;
- 
+
   $('tbody').append("<td>"+this.Products[i]["productType"]+"</td>");
   $('tbody').append("<td>"+this.Products[i]["kind"]+"</td>");
   $('tbody').append("<td>"+this.Products[i]["productName"]+"</td>");
@@ -71,7 +85,7 @@ for(let i=0;i<this.Products.length; i++)
   {
     price+=this.Products[i]["price"][j]["size"] +" : "+ this.Products[i]["price"][j]["value"]+"<br>";
   }
- 
+
   $('tbody').append("<td>"+price+"</td>");
 
   $('tbody').append('<td><button type="button" id = "'+i+'" name='+ this.Products[i]["_id"]+' class="btn btn-warning">Edit</button></td>');
@@ -85,32 +99,32 @@ for(let i=0;i<this.Products.length; i++)
 
 
   }
- 
-  
+
+
   var buttons = (<HTMLButtonElement[]><any>document.getElementsByClassName("btn-danger"));
       if (buttons.length > 0) {
-  
+
           for (var i = 0; i < buttons.length; i++) {
              let tmp = i.toString()
               buttons[i].onclick = ()=>{this.removeProduct(buttons[tmp].name  ) };
-  
+
           }
-  
+
       }
 
       var buttons = (<HTMLButtonElement[]><any>document.getElementsByClassName("btn-warning"));
       if (buttons.length > 0) {
-  
+
           for (var i = 0; i < buttons.length; i++) {
              let tmp = i.toString()
               buttons[i].onclick = ()=>{this.editProduct(buttons[tmp].name  ) };
-  
+
           }
-  
+
       }
 
 
-  
+
   }
 
   addNew( )
@@ -134,7 +148,7 @@ $('#content').append('<div>\
 <input class="form-control"  id="newIngridient" >\
 <button id = "addIngridient" class="btn btn-primary">Add new ingridient</button>\
 <select  class="form-control" id="selectedIngridients" > </select ></div>');
-  
+
 
 $("#content").append('<h5>Product image</h5>');
 $('#content').append(' <input class="form-control" id="productImg" >');
@@ -173,17 +187,17 @@ removeProduct(name )
 
   this.productServise.removeProductById(name)
   .subscribe(data=>{
-  
+
     alert("product successfully removed");
     console.log(name);
     this.Products=this.Products.filter(item=>item["_id"]!==name);
-    
-   
+
+
     this.goodsControl();
   },
   (error)=>{console.log(error);
   });
- 
+
 
 
 }
@@ -247,7 +261,7 @@ for(let i=0;i<editTmp["nutrients"].length;i++)
 for(let i=0;i<editTmp["price"].length;i++)
 {
   $('#selectedSizes').append("<option>" + editTmp["price"][i]["size"]+" : "+editTmp["price"][i]["value"]+ "</option>");
-  
+
 }
 
 
@@ -318,7 +332,7 @@ if(typeFunc ==1){
           (error)=>{console.log(error);
           });
           this.refresh();
-      
+
           alert("product successfully edited");
       }
 

@@ -12,7 +12,8 @@ export interface UserI {
   password: String,
   address: String,
   birthday: Date
-  order?: any[]
+  order?: any[],
+  role?:string
 
 }
 

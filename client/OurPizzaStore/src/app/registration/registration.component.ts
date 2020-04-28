@@ -10,12 +10,18 @@ import {UserService} from "../services/user.service"
 })
 export class RegistrationComponent implements OnInit {
 
+
   onSubmit(form: NgForm){
 
     if(form.valid){
       this.userService.register(form.value.userName, form.value.email ,form.value.phone , form.value.address , form.value.dateOfBirth,form.value.password )
         .subscribe(data=>{
-            console.log(data);
+          console.log(data);
+            if(data['status'] === 'success registered'){
+              alert('Registration success')
+              this.router.navigate(['/login'])
+            }
+
           },
           (error)=>{console.log(error);
           });

@@ -54,8 +54,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           })
           // console.log(this.user.isAuthenticated())
         }
+        
 
-      }, error => {console.log(error); console.log('error');})
+      }, error => {console.log(error); console.log('error'); alert('Check you data')})
     }
   }
 

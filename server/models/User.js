@@ -38,6 +38,10 @@ const userSchema = new Schema({
     },
     birthday:{
         type: Date
+    },
+    role: {
+        type: String,
+        default: 'user'
     }
 
 })
