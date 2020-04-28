@@ -12,12 +12,13 @@ import {AuthenticationGuard} from "./authentication.guard";
 import {MyOrderComponent} from "./my-order/my-order.component";
 import {CartComponent} from "./cart/cart.component";
 import {MakeOrderComponent} from "./make-order/make-order.component";
-
+import {AdministrativeComponent} from "./administrative/administrative.component";
 
 const routes: Routes = [
   {path: '', component: TemplatesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
+  {path: 'admin', component: AdministrativeComponent},
   {path: 'cart', component: CartComponent},
   {path: 'order', component: MakeOrderComponent},
   {path: 'my-info', component:MyInfoComponent, canActivate:[AuthenticationGuard]},

@@ -2,7 +2,11 @@ const User = require('../models/User');
 const Order = require('../models/Order');
 const Product = require('../models/Product')
 
+exports.getOrders = async (req, res)=>{
 
+    const orders = await Order.find();
+    res.send(JSON.stringify(orders))
+}
 exports.addOrderApi = async (req, res) => {
     const order = new Order({
         order: {
@@ -13,7 +17,7 @@ exports.addOrderApi = async (req, res) => {
                     productType:el.type,
                     name:el.name,
                     value:el.price,
-                    img:'',
+                    img:el.img,
                     kind:el.kind,
                     count:el.count,
                 }

@@ -1,15 +1,28 @@
 const Product = require('../models/Product');
 
+exports.editProduct= async (req, res) =>{
+    const result = await Product.updateOne({_id : req.body.id}, {$set:{
+      productType: req.body.typeProduct,
+      productName: req.body.productName,
+      price: req.body.price,
+      kind: req.body.kind,
+      description: req.body.description,
+      img: req.body.img,
+      nutrients:  req.body.nutrients
 
+    }})
+  
+    res.end(JSON.stringify(result));
+}
 exports.AddProductApi = (req, res) =>{
     const product = new Product({
-        productType: 'pizza',
-        productName: 'Mashroom',
-        price: [{size: 'S', value: 175},{size: 'XL', value: 240}],
-        kind: 'Vegeterian',
-        description: 'Some description',
-        img: '',
-        nutrients: ['шампынйони свіжі', "моцарела вчорашня", "шампіньони консервовані", "соус пелатті", "корж"]
+        productType: req.body.typeProduct,
+        productName: req.body.productName,
+        price: req.body.price,
+        kind: req.body.kind,
+        description: req.body.description,
+        img: req.body.img,
+        nutrients:  req.body.nutrients
     })
 
     product.save();
@@ -32,3 +45,16 @@ exports.getByIds = async (req, res)=>{
     res.end(JSON.stringify(arrProduct));
 
 }
+
+
+exports.deleteByIds = async (req, res)=>{
+        await Product.deleteMany(Product.findById(req.body.Id));
+      
+   
+    res.end(JSON.stringify(true));
+
+}
+
+
+
+

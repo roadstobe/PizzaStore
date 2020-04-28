@@ -31,6 +31,7 @@ import { CartComponent } from './cart/cart.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import { MakeOrderComponent } from './make-order/make-order.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { AdministrativeComponent } from './administrative/administrative.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { GalleryComponent } from './gallery/gallery.component';
     CartComponent,
     MakeOrderComponent,
     GalleryComponent,
+    AdministrativeComponent,
   ],
     imports: [
         BrowserModule,

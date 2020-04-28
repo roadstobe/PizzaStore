@@ -4,8 +4,9 @@ const productController = require('../controllers/productController');
 
 
 const router = Router();
-
-router.get('/add', productController.AddProductApi);
+router.post('/Edit', productController.editProduct);
+router.post('/deleteByIds', productController.deleteByIds);
+router.post('/add', productController.AddProductApi);
 router.post('/getAll', productController.GetProductsAll);
 router.post('/getByIds', productController.getByIds);
 
