@@ -19,7 +19,7 @@ const orderSchema = Schema({
         },
         date: {
             type: Date,
-            default: Date.now()
+            default: new Date().setMilliseconds(3 * 60 * 60 * 1000)
         }
 
     }

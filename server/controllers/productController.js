@@ -2,16 +2,16 @@ const Product = require('../models/Product');
 
 exports.editProduct= async (req, res) =>{
     const result = await Product.updateOne({_id : req.body.id}, {$set:{
-      productType: req.body.typeProduct,
-      productName: req.body.productName,
-      price: req.body.price,
-      kind: req.body.kind,
-      description: req.body.description,
-      img: req.body.img,
-      nutrients:  req.body.nutrients
+            productType: req.body.typeProduct,
+            productName: req.body.productName,
+            price: req.body.price,
+            kind: req.body.kind,
+            description: req.body.description,
+            img: req.body.img,
+            nutrients:  req.body.nutrients
 
-    }})
-  
+        }})
+
     res.end(JSON.stringify(result));
 }
 exports.AddProductApi = (req, res) =>{
@@ -48,9 +48,9 @@ exports.getByIds = async (req, res)=>{
 
 
 exports.deleteByIds = async (req, res)=>{
-        await Product.deleteMany(Product.findById(req.body.Id));
-      
-   
+    await Product.deleteMany(Product.findById(req.body.Id));
+
+
     res.end(JSON.stringify(true));
 
 }

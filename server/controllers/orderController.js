@@ -2,6 +2,16 @@ const User = require('../models/User');
 const Order = require('../models/Order');
 const Product = require('../models/Product')
 
+
+exports.deleteOrder = async (req, res)=>{
+    console.log(req.body);
+    await Order.deleteMany(Order.findById(req.body.Id));
+
+
+    res.end(JSON.stringify(true));
+
+}
+
 exports.getOrders = async (req, res)=>{
 
     const orders = await Order.find();

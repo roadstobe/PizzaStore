@@ -1,13 +1,8 @@
 <h4>Залишити відгук</h4>
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Title</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
-  </div>
 
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Your Reply</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-  <button type="submit" class="btn btn-info">Send</button>
-</form>
+  <button (click)="sendFeedback()" class="btn btn-info">Send</button>
+

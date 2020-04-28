@@ -1,1 +1,13 @@
-<p>feedback works!</p>
+<h2 class="text-center" style="margin: 20px">Feedback about us</h2>
+
+<div class="row">
+  <div class="card col-4" style="height: 100px; margin: 20px" *ngFor="let item of feedbackArray">
+    <div class="card-body">
+      <h5 class="card-title">{{item['name']}}</h5>
+      <p class="card-text">{{item['text']}}</p>
+    </div>
+  </div>
+
+</div>
+
+
