@@ -9,6 +9,7 @@ const userApi = require('./routes/userApi');
 const orderApi = require('./routes/orderApi');
 const cartApi = require('./routes/cartRouter')
 const feedbackApi = require('./routes/feedbackApi')
+const categoryApi = require('./routes/categoryApi')
 
 const app = express();
 const PORT = 9000;
@@ -38,6 +39,8 @@ app.use('/userApi', userApi);
 app.use('/orderApi', orderApi);
 app.use('/cartApi', cartApi);
 app.use('/feedbackApi', feedbackApi);
+app.use('/categoryApi', categoryApi);
+
 
 
 app.use(function (req, res) {

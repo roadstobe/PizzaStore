@@ -31,7 +31,7 @@ export class ProductService {
   addProducts(Ptype , Pname , Pkind , Pprice , Pnutrients , Pdesc , Pimge):Observable<ProductI[]>{
 
       var product : ProductI={
- 
+
   typeProduct: Ptype,
   productName: Pname,
   kind:Pkind,
@@ -48,7 +48,7 @@ export class ProductService {
   }
 
   removeProductById(Id){
-   
+
     return this.httpClient.post('http://localhost:9000/productApi/deleteByIds', {Id});
   }
 
@@ -76,6 +76,19 @@ img: Pimge
 
   getCartUser(idUser){
     return this.httpClient.post('http://localhost:9000/cartApi/get', {idUser})
+  }
+
+  createCategory(name){
+    return this.httpClient.post<Array<any>>('http://localhost:9000/categoryApi/add', {name})
+  }
+  getCategory(){
+    return this.httpClient.post('http://localhost:9000/categoryApi/get', {})
+  }
+  deleteCategory(id){
+    return this.httpClient.post('http://localhost:9000/categoryApi/delete', {id})
+  }
+  deleteProductByCategory(categoryName){
+    return this.httpClient.post('http://localhost:9000/categoryApi/deleteByCategory', {categoryName})
   }
 
 

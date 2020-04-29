@@ -32,6 +32,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { MakeOrderComponent } from './make-order/make-order.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { AdministrativeComponent } from './administrative/administrative.component';
+import { ManageCategoryComponent } from './manage-category/manage-category.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { AdministrativeComponent } from './administrative/administrative.compone
     MakeOrderComponent,
     GalleryComponent,
     AdministrativeComponent,
+    ManageCategoryComponent,
   ],
     imports: [
         BrowserModule,

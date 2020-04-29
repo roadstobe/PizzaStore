@@ -7,9 +7,10 @@
       Filter:
       <ul class="list-filter">
         <li><a (click)="setFilter('')">All</a></li>
-        <li><a (click)="setFilter('Meat')">Meat pizza</a></li>
-        <li><a (click)="setFilter('Vegeterian')">Vegetarian pizza</a></li>
-        <li><a (click)="setFilter('Fish')">Fish pizza</a></li>
+        <li *ngFor="let item of categoryArr"><a (click)="setFilter(item.name)">{{item.name}}</a></li>
+<!--        <li><a (click)="setFilter('Meat')">Meat pizza</a></li>-->
+<!--        <li><a (click)="setFilter('Vegeterian')">Vegetarian pizza</a></li>-->
+<!--        <li><a (click)="setFilter('Fish')">Fish pizza</a></li>-->
       </ul>
     </div>
     <!--    -->

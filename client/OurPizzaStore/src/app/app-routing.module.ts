@@ -13,6 +13,7 @@ import {MyOrderComponent} from "./my-order/my-order.component";
 import {CartComponent} from "./cart/cart.component";
 import {MakeOrderComponent} from "./make-order/make-order.component";
 import {AdministrativeComponent} from "./administrative/administrative.component";
+import {ManageCategoryComponent} from "./manage-category/manage-category.component";
 
 const routes: Routes = [
   {path: '', component: TemplatesComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'order', component: MakeOrderComponent},
   {path: 'my-info', component:MyInfoComponent, canActivate:[AuthenticationGuard]},
+  {path: 'category', component:ManageCategoryComponent, canActivate:[AuthenticationGuard]},
   {path: 'admin', component:AdministrativeComponent, canActivate:[AuthenticationGuard]},
   {path: 'my-order', component:MyOrderComponent, canActivate:[AuthenticationGuard]},
   {path: 'edit-info', component:EditPersonallInfoComponent,  canActivate:[AuthenticationGuard]},

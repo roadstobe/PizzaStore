@@ -50,4 +50,18 @@ export class DataService {
   public getProductInCart():Observable<any[]> {
     return this.inCartProduct$.asObservable();
   }
+
+
+  //////////////////////////////////////
+  ///////////////for category///////////////
+
+  private inCategoryGet$:BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public setCategory(newCategory:any[]){
+    this.inCategoryGet$.next(newCategory);
+  }
+  public getCategory():Observable<any[]> {
+    return this.inCategoryGet$.asObservable();
+  }
+
+
 }

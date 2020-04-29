@@ -17,6 +17,7 @@ import {DataService} from "../data.service";
 export class AdministrativeComponent implements OnInit {
   Products:ProductI[]=[];
   Orders:any[]=[];
+  category = []
 
   user:UserI = {address: "", birthday: undefined, email: "", name: "", password: "", phone: ""}
 
@@ -67,6 +68,9 @@ export class AdministrativeComponent implements OnInit {
       .subscribe((data)=>{
         this.Orders = data
       });
+    this.productServise.getCategory().subscribe(res=>{
+      this.category = res['category']
+    })
   }
   goodsControl()
   {
@@ -151,16 +155,27 @@ export class AdministrativeComponent implements OnInit {
 
   addNew( )
   {
+    let fragment = document.createDocumentFragment();
+    let select = document.createElement('select');
+    select.classList.add('form-control')
+    select.id = 'kind';
+    for (let i = 0; i < this.category.length; i++){
+      let option = document.createElement('option');
+      option.value = this.category[i].name;
+      option.textContent= this.category[i].name;
+      select.appendChild(option)
+    }
+
+
+  console.log(fragment);
+
     $("#content").empty();
     $("#content").append('<h3>Add new product</h3>');
     $("#content").append('<h5>Product type</h5>');
     $('#content').append(' <input class="form-control" id="productType" >');
     $("#content").append('<h5>Product king</h5>');
-    $('#content').append('<select class="form-control" id="kind">\
-  <option>Meat</option>\
-  <option>Vegeterian</option>\
-  <option>Fish</option>\
-</select>');
+    // $('#content').append(`<select class="form-control" id="kind">fragment</select>`);
+    $('#content').append(select);
     $("#content").append('<h5>Product name</h5>');
     $('#content').append(' <input class="form-control" id="productName" >');
     $("#content").append('<h5>Product description</h5>');
@@ -432,11 +447,9 @@ export class AdministrativeComponent implements OnInit {
   }
 
 
-
-
-
-
-
+  manageCategory() {
+    this.route.navigate(['/category'])
+  }
 }
 
 

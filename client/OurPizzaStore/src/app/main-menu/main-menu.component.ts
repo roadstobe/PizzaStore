@@ -21,8 +21,11 @@ export class MainMenuComponent implements OnInit, OnDestroy {
 
   }
 
+
+
   //продукт для карточок
   products:ProductI[] = []
+  categoryArr = [];
 
   //не той продукт що продукт
   dataProducts:any[];
@@ -38,6 +41,11 @@ export class MainMenuComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+
+    this.productService.getCategory().subscribe(res=>{
+      this.categoryArr = res['category'];
+    })
+
 
     this._dataService.getUser().subscribe(res=>{
       this.isUser = res;
