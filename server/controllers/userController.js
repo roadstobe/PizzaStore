@@ -1,20 +1,26 @@
 const User = require('../models/User');
 const Order = require('../models/Order');
-const Product = require('../models/Product')
+const Product = require('../models/Product');
+var bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const secret = "mysecretka";
 
-const passwordHash = require ('password-hash');
 
 
 exports.addUserApi = (req, res)=>{
+
+    const salt = bcrypt.genSaltSync(10);
+    const userHash = bcrypt.hashSync(req.body.password, salt);
+
     const user = new User({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        password: passwordHash.generate (req.body.password),
+        password:userHash,
         address: req.body.address,
         birthday: req.body.birthday
     })
-    console.log(passwordHash.generate (req.body.password));
+    console.log(user.password);
 
     user.save(err=>{
         console.log(err);
@@ -23,6 +29,27 @@ exports.addUserApi = (req, res)=>{
 
     res.end(JSON.stringify({status: 'success registered'}))
 }
+
+// exports.addUserApi = (req, res)=>{
+//     const user = new User({
+//         name: req.body.name,
+//         email: req.body.email,
+//         phone: req.body.phone,
+//         password: passwordHash.generate (req.body.password),
+//         address: req.body.address,
+//         birthday: req.body.birthday
+//     })
+//     console.log(passwordHash.generate (req.body.password));
+//
+//     user.save(err=>{
+//         console.log(err);
+//         res.end(JSON.stringify({status: 'error', err}))
+//     })
+//
+//     res.end(JSON.stringify({status: 'success registered'}))
+// }
+
+
 
 
 exports.getOrders = async (req, res)=>{
@@ -47,15 +74,44 @@ exports.update = async (req, res)=>{
     res.end(JSON.stringify(result));
 }
 
-exports.checkUser = async (req, res)=>{
-    const user = await User.findOne({ email: req.body.email });
-    if(user){
-        if(passwordHash.verify( req.body.password , user.password)){
+// exports.checkUser = async (req, res)=>{
+//     const user = await User.findOne({ email: req.body.email });
+//     if(user){
+//         if(passwordHash.verify( req.body.password , user.password)){
+//
+//             res.end(JSON.stringify({user}))
+//         }
+//     }
+//     res.end('none')
+// }
 
-            res.end(JSON.stringify({user}))
+exports.checkUser=function(req, res){
+    if (!req.body) return res.sendStatus(400);
+    const userEmail = req.body.email;
+    const userPassword = req.body.password;
+
+    User.findOne({
+        email: userEmail
+    }, function (err, user) {
+        if (err) return console.log(err);
+        if(!user){
+            res.json(false);
+            return;
         }
-    }
-    res.end('none')
+        if (bcrypt.compareSync(userPassword, user.password)) {
+            const payload = {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            };
+            const token = jwt.sign(payload,secret);
+
+            console.log(token);
+            res.json({
+                token: token
+            });
+        } else res.json(false);
+    });
 }
 
 
